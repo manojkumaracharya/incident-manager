@@ -14,10 +14,10 @@ JS and Python can be used to interact together
     
     ## Usage
     * Clone the repo, and then
-	cd incident-manager
-	npm install electron
-	npm install bootstrap
-	npm install jquery
+	* cd incident-manager
+	* npm install electron
+	* npm install bootstrap
+	* npm install jquery
 	
-	For running the application
-	npm start
+	* For running the application
+	* npm start
