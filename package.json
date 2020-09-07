@@ -1,0 +1,20 @@
+{
+  "name": "python-app-with-electron-gui",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "bootstrap": "^4.5.2",
+    "electron": "^1.8.4",
+    "jquery": "^3.5.1"
+  },
+  "dependencies": {
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1",
+    "python-shell": "^1.0.7"
+  }
+}

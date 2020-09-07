@@ -1,0 +1,56 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/fontawesome.min.css" rel="stylesheet"> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/fontawesome-min.css"> -->
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="https://use.fontawesome.com/2a33d3e0b9.js"></script>
+<script src="Scripts/tabs.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<body>   
+    <div>
+        <nav class="navbar navbar-expand-md" style="background-color:rgb(30, 29, 34);height:35px;color:rgb(145, 137, 137);font-size:x-large">Rakshak
+            <!-- <a class="navbar-brand" style="font-size:x-large" href="">Rakshak</a> -->
+            <div class="collapse navbar-collapse" id="main-navigation">
+              <ul class="navbar-nav">
+                <li class="nav-item" style="color:white;font-size:medium;" id="username"></li>
+              </ul>
+            </div>
+          </nav>
+          <nav class="navbar navbar-expand-md" style="background-color: rgb(30, 29, 34);height:25px;color:rgb(141, 133, 133);font-size:medium">Intelligent Incident Manager
+            <!-- <a class="navbar-brand" style="font-size:medium" href="">Welcome to the next gen Incident Manager</a> -->
+            <div class="collapse navbar-collapse" id="main-navigation">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" style="text-align:right" href="" onclick="logout()">logout</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          
+          <div class="container-fluid">
+            <!-- <div class="overlay"></div> -->
+            <!-- https://stackoverflow.com/questions/22588976/how-to-load-a-html-page-into-a-div-by-clicking-a-li-inside-a-menu -->
+            <div class="sidenav">
+                <!-- https://www.w3schools.com/icons/fontawesome5_icons_mathematics.asp -->
+                <a href="querySelector.html" style="font-size:smaller"><i class="fa fa-search"></i> Query Selector</a>
+                <a href="summary.html" style="font-size:smaller"><i class="fa fa-calculator"></i> Incident Summary</a>
+                <a href="updates.html" style="font-size:smaller"><i class="fa fa-edit"></i> Incident Updates</a>
+                <a href="analytics.html" style="font-size:smaller"><i class="fa fa-bar-chart"></i> Analytics</a>
+                <a href="monitoring.html" style="font-size:smaller"><i class="fa fa-desktop"></i> Monitoring</a>                
+              </div>
+              <div id="mainContent" style="margin-left:82px;background-image:url('./images/header-background.jpg');background-size: cover;background-position: center;position: relative">
+                <div class="overlay"></div>
+                <div class="pull-right">
+                  <!-- https://www.timeanddate.com/clocks/free.html -->
+                  <iframe src="http://free.timeanddate.com/clock/i7g1xkf4/n1038/fn6/fs22/fcfff/tc000/pc000/ftb/bas2/bat1/bacfff/pa8/tt0/tw1/th1/ta1/tb4" 
+                style="margin-left:82px"
+                frameborder="0" 
+                width="284" 
+                height="71"></iframe>
+                </div>                
+              </div>
+              
+          </header>
+          
+    </div>
+    </body>
+  </html> 
