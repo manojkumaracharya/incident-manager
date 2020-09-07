@@ -19,5 +19,4 @@ JS and Python can be used to interact together
 	* npm install bootstrap
 	* npm install jquery
 	
-	* For running the application
-	* npm start
+	* For running the application, 	'npm start'
