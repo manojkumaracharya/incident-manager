@@ -1,7 +1,7 @@
 {
-  "name": "python-app-with-electron-gui",
+  "name": "python-app-with-electron",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Incident Manager Electron application",
   "main": "app.js",
   "scripts": {
     "start": "electron ."
@@ -9,10 +9,12 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "bootstrap": "^4.5.2",
-    "electron": "^1.8.4",
+    "electron": "^1.8.8",
     "jquery": "^3.5.1"
   },
   "dependencies": {
+    "mysql-connector-python": "8.0.21",
+    "pandas": "1.1.1",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "python-shell": "^1.0.7"

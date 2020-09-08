@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h5>Edit Incident</h5>
+
+<form action="">
+  <label for="incident">Incident:</label><br>
+  <input type="text" id="incident" name="incident" value=""><br>
+  <label for="summary">Summary:</label><br>
+  <input type="textarea" id="summary" name="summary" value=""><br><br>
+  <label for="openDate">Open Date:</label><br>
+  <input type="text" id="openDate" name="openDate" value=""><br>
+  <label for="priority">Priority:</label><br>
+  <input type="text" id="priority" name="priority" value=""><br>
+  <label for="status">Status:</label><br>
+  <input type="text" id="status" name="status" value=""><br>
+  <label for="lastUpdated">Last Updated:</label><br>
+  <input type="text" id="lastUpdated" name="lastUpdated" value=""><br>
+  <label for="updatedBy">Updated By:</label><br>
+  <input type="text" id="updatedBy" name="updatedBy" value=""><br>
+  
+  <input type="button" onclick="submitChanges()" value="Submit">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+<script>
+  document.getElementById("incident").value = localStorage.getItem("incident");
+  document.getElementById("summary").value = localStorage.getItem("summary");
+  document.getElementById("openDate").value = localStorage.getItem("openDate");
+  document.getElementById("priority").value = localStorage.getItem("priority");
+  document.getElementById("status").value = localStorage.getItem("status");
+  document.getElementById("lastUpdated").value = localStorage.getItem("lastUpdated");
+  document.getElementById("updatedBy").value = localStorage.getItem("updatedBy");
+
+  var {PythonShell} = require('python-shell')
+  var path = require("path")
+
+  function submitChanges(){
+  var options = {
+    scriptPath : path.join(__dirname, '/../engine/'),
+    args : ['updateStatus',document.getElementById("status").value,localStorage.getItem("incident")]
+  }
+  //alert(options)
+  var pyshell = new PythonShell('Hackademy_Incident_Management.py', options);
+  //alert(pyshell)
+  pyshell.on('message', function(message) {
+    console.log(message);
+  })  
+}
+</script>
+</body>
+</html>
