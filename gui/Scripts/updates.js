@@ -1,6 +1,7 @@
 //https://mdbootstrap.com/docs/jquery/tables/editable/
 $(document).ready(function(){
   getData();    
+  
 })
 
 var {PythonShell} = require('python-shell')
@@ -24,6 +25,7 @@ function getData() {
     if (err) throw err;
     //console.log('finished');
     processOutput(jsonOutput);
+    document.getElementById("editData").disabled = true;
     highlight_row();
   });
 }
@@ -31,10 +33,10 @@ function getData() {
 function processOutput(jsonString){
     //console.log(jsonString);
     var rows = JSON.parse(jsonString);  
-    var html='<table class="table table-striped table-bordered" id="display-table"> '
+    var html='<table class="table table-striped table-bordered" style="font-size:smaller" id="display-table"> '
     html += '<thead> <tr> <th class="th-sm">Incident</th> <th class="th-sm">Summary</th> '
     html += '<th class="th-sm">Open Date</th> <th class="th-sm">Priority</th> <th class="th-sm">Status</th> <th class="th-sm">Last Updated</th> '
-    html += '<th class="th-sm">Updated By</th><th class="th-sm">Action</th> </tr> </thead> <tbody>'
+    html += '<th class="th-sm">Updated By</th><th class="th-sm">Slack Channel</th> </tr> </thead> <tbody>'
 
     for (var i=0;i<rows.length;i++){
       html+= '<tr> <th class="pt-3-half" >' + rows[i].IN_NO + '</td> '
@@ -44,7 +46,8 @@ function processOutput(jsonString){
       html+= '<td class="pt-3-half" >' + rows[i].STATUS + '</td> '
       html+= '<td class="pt-3-half" >' + rows[i].LAST_UPDATED + '</td> '
       html+= '<td class="pt-3-half" >' + rows[i].UPDATED_BY + '</td> '
-      html+= '<td><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Create Slack Channel</button></td> </tr>'
+      // html+= '<td><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Create Slack Channel</button></td> </tr>'
+      html+= '<td><span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></span></td> </tr>'
     }
     html += '</tbody> <tfoot> <tr><th>Incident</th><th>Summary</th><th>Open Date</th><th>Priority</th><th>Status</th><th>Last Updated</th><th>Updated By</th><th>Action</th></tr></tfoot> </table>'
     document.getElementById('editableTable').innerHTML = html; 
@@ -98,7 +101,7 @@ function highlight_row() {
             localStorage.setItem("lastUpdated",rowSelected.cells[5].innerHTML);
             localStorage.setItem("updatedBy",rowSelected.cells[6].innerHTML);
             //alert(msg);
-            
+            document.getElementById("editData").disabled = false;
         }
     }
 }

@@ -11,14 +11,19 @@
 <body style="background-color:rgb(255, 255, 255)">
 
   <!-- Editable table -->
-<div class="card">
-  
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">List of Incidents</h3>
-  
+<div class="card">  
+  <!-- <h3 class="card-header text-center font-weight-bold text-uppercase py-4">List of Incidents</h3> -->  
   <div class="card-body">
-    <div class="text-center buttonEditWrapper">
-      <button class="btn btn-info btn-rounded btn-sm buttonEdit" onclick="openModal()" >Edit<i class="fa fa-pencil-square-o ml-1"></i></a>
+    <div class="text-center buttonAddWrapper">
+      <table>
+        <tr><td>
+          <button class="btn btn-info btn-rounded btn-sm buttonEdit" onclick="getData()" >Reload</a>
+        </td><td>
+          <button class="btn btn-info btn-rounded btn-sm buttonEdit" id="editData" onclick="openModal()" >Edit Status<i class="fa fa-pencil-square-o ml-1"></i></a>
+        </td></tr>
+      </table>      
     </div>
+    <br/>
     <!-- <span>
         <button type="button" class="btn btn-info" id="but_add">Add New Row</button>
     </span>       -->

@@ -1,29 +1,39 @@
 <!DOCTYPE html>
+<head>  
+  <title>Edit Incident Summary</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/2a33d3e0b9.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
 <html>
 <body>
-
-<h5>Edit Incident</h5>
-
-<form action="">
-  <label for="incident">Incident:</label><br>
-  <input type="text" id="incident" name="incident" value=""><br>
-  <label for="summary">Summary:</label><br>
-  <input type="textarea" id="summary" name="summary" value=""><br><br>
-  <label for="openDate">Open Date:</label><br>
-  <input type="text" id="openDate" name="openDate" value=""><br>
-  <label for="priority">Priority:</label><br>
-  <input type="text" id="priority" name="priority" value=""><br>
-  <label for="status">Status:</label><br>
-  <input type="text" id="status" name="status" value=""><br>
-  <label for="lastUpdated">Last Updated:</label><br>
-  <input type="text" id="lastUpdated" name="lastUpdated" value=""><br>
-  <label for="updatedBy">Updated By:</label><br>
-  <input type="text" id="updatedBy" name="updatedBy" value=""><br>
-  
-  <input type="button" onclick="submitChanges()" value="Submit">
-</form> 
-
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+<div class="container">
+  <h5>Edit Status</h5>
+  <table style="font-size:smaller">
+    <tr><td><label for="incident">Incident:   </label><br></td><td><input type="text" id="incident" class="form-control" name="incident" readonly value=""></td></tr>
+    <tr><td><label for="summary">Summary:   </label><br></td><td><textarea id="summary" class="form-control" style="width:500px" name="summary" readonly value=""></textarea></td></tr>
+    <tr><td><label for="openDate">Open Date:   </label><br></td><td><input type="text" id="openDate" class="form-control" name="openDate" readonly value=""></td></tr>
+    <tr><td><label for="priority">Priority:   </label><br></td><td><input type="text" id="priority" class="form-control" name="priority" readonly value=""></td></tr>
+    <tr><td><label for="status">Status:   </label><br></td><td>
+      <!-- <input type="text" id="status" class="form-control" name="status" value=""> -->
+      <select name="status" id="status" class="form-control">
+        <option value="Open">Open</option>
+        <option value="Acknowledged">Acknowledged</option>
+        <option value="Transferred">Transferred</option>
+        <option value="Closed">Closed</option>
+      </select>
+    </td></tr>
+    <tr><td><label for="lastUpdated">Last Updated:   </label><br></td><td><input type="text" id="lastUpdated" class="form-control" name="lastUpdated" readonly value=""></td></tr>
+    <tr><td><label for="updatedBy">Updated By:   </label><br></td><td><input type="text" id="updatedBy" class="form-control" name="updatedBy" readonly value=""></td></tr>
+    <tr>
+      <td> <input type="button" class="btn btn-info" onclick="closeWindow()" value="Cancel" name=""> </td>
+      <td><input type="button" class="btn btn-info" onclick="submitChanges()" value="Submit" name=""></td>      
+  </tr>
+  </table>
+</div>
 <script>
   document.getElementById("incident").value = localStorage.getItem("incident");
   document.getElementById("summary").value = localStorage.getItem("summary");
@@ -36,18 +46,22 @@
   var {PythonShell} = require('python-shell')
   var path = require("path")
 
-  function submitChanges(){
-  var options = {
-    scriptPath : path.join(__dirname, '/../engine/'),
-    args : ['updateStatus',document.getElementById("status").value,localStorage.getItem("incident")]
+  function closeWindow(){
+    window.close();
   }
-  //alert(options)
-  var pyshell = new PythonShell('Hackademy_Incident_Management.py', options);
-  //alert(pyshell)
-  pyshell.on('message', function(message) {
-    console.log(message);
-  })  
-}
+  function submitChanges(){
+    var options = {
+      scriptPath : path.join(__dirname, '/../engine/'),
+      args : ['updateStatus',document.getElementById("status").value,localStorage.getItem("incident")]
+    }
+    //alert(options)
+    var pyshell = new PythonShell('Hackademy_Incident_Management.py', options);
+    //alert(pyshell)
+    pyshell.on('message', function(message) {
+      console.log(message);
+      window.close();
+    })    
+  }
 </script>
 </body>
 </html>
