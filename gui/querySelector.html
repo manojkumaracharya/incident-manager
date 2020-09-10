@@ -8,7 +8,7 @@
 }
 
 #myInput {
-  background-image: url('/css/searchicon.png');
+  background-image: url('images/searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
@@ -41,50 +41,57 @@
 </head>
 <body>
 
-<h2>My Customers</h2>
+<h2>My Incidents</h2>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-
-<table id="myTable">
-  <tr class="header">
-    <th style="width:60%;">Name</th>
-    <th style="width:40%;">Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Berglunds snabbkop</td>
-    <td>Sweden</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Koniglich Essen</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Italy</td>
-  </tr>
-  <tr>
-    <td>North/South</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Paris specialites</td>
-    <td>France</td>
-  </tr>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in part of summary or name" style="width:400px">
+<table id="myTable" style="font-size:smaller">
+  <tr><th>Incident</th><th>Summary</th><th>Open Date</th><th>Priority</th><th>Status</th><th>Last Updated</th><th style="visibility:hidden;";>Updated By</th></tr>
+    <tr><td>IN10000001</td><td>GCC EU Control M job LGPABDU99 has not started.</td><td>2020-09-05 20:06:37</td><td>3</td><td>Transferred</td><td>2020-09-05 20:10:37</td>
+    <td style="visibility:hidden;";>IN10000001	GCC EU Control M job LGPABDU99 has not started.	2020-09-05 20:06:37	3	Transferred	2020-09-05 20:10:37	Acharya,Manoj	</td>
+    </tr>
+    <tr><td>IN10000002</td><td>GCC EU Control M job LGPXVW154 is over runing.</td><td>2020-09-05 20:06:37</td><td>4</td><td>Open</td><td>2020-09-05 21:06:37</td>
+      <td style="visibility:hidden;";>IN10000002	GCC EU Control M job LGPXVW154 is over runing.	2020-09-05 20:06:37	4	Open	2020-09-05 21:06:37	Acharya,Manoj	</td>
+    </tr>
+    <tr><td>IN10000003</td><td>Investigate EL performance issue</td><td>2020-09-05 20:06:37</td><td>3</td><td>Closed</td><td>2020-09-05 20:07:00</td>
+      <td style="visibility:hidden;";>IN10000003	Investigate EL performance issue	2020-09-05 20:06:37	3	Closed	2020-09-05 20:07:00	Acharya,Manoj	</td>
+    </tr>
+    <tr><td>IN10000004</td><td>GCC EU Control M job LGPABDU99 has failed.</td><td>2020-09-05 21:40:02</td><td>4</td><td>Acknowledged</td><td>2020-09-05 21:40:02</td>
+      <td style="visibility:hidden;";>IN10000004	GCC EU Control M job LGPABDU99 has failed.	2020-09-05 21:40:02	4	Acknowledged	2020-09-05 21:40:02	Acharya,Manoj</td>
+    </tr>
 </table>
 
 <script>
+// Create a client
+// Import the Google Cloud client library
+//const {BigQuery} = require('@google-cloud/bigquery');
+
+async function queryStackOverflow() {
+  // Queries a public Stack Overflow dataset.
+
+  // Create a client
+  const bigqueryClient = new BigQuery();
+
+  // The SQL query to run
+  const sqlQuery = `select number from incidents.incidents_01 where incident_state = "New" and location = "Location 93" LIMIT 10`;
+
+  const options = {
+    query: sqlQuery,
+    // Location must match that of the dataset(s) referenced in the query.
+    location: 'US',
+  };
+
+  // Run the query
+  const [rows] = await bigqueryClient.query(options);
+
+  console.log('Query Results:');
+  rows.forEach(row => {
+    const url = row['url'];
+    const viewCount = row['view_count'];
+    console.log(`url: ${url}, ${viewCount} views`);
+  });
+}
+//queryStackOverflow();
+
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
@@ -92,7 +99,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[6];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -100,7 +107,7 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }   
   }
 }
 </script>
