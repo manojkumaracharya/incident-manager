@@ -19,6 +19,7 @@
 .container {
   margin-top: 20px;
   overflow: hidden;
+  background-color:rgb(172, 190, 136)
 }
 
 /* Style the buttons */
@@ -28,6 +29,7 @@
   padding: 12px 16px;
   background-color: #f1f1f1;
   cursor: pointer;
+  font-size:smaller
 }
 
 .btn:hover {
@@ -41,8 +43,42 @@
 </style>
 <body>
 
-<h2>Placeholder for ML. Predict 'Closure code' based on multiple parameters</h2>
+<h5>Placeholder for ML. Predict 'Closure code' based on multiple parameters</h5>
+<div class="container">
+  
+  <br/>
+  
+  <table style="font-size:smaller">
+    <tr>
+      <td>======================</td><td>====================================================================</td>
+    </tr>
+    <tr>
+      <td>Upload Training Data:  </td><td><input type="file" class="btn" value="Upload Training Data" name=""></td>
+    </tr>
+    <tr>
+      <td>======================</td><td>====================================================================</td>
+    </tr>
+    <tr>
+      <td>======================</td><td>====================================================================</td>
+    </tr>
+    <tr><td>Details of Incident:</td><td><textarea id="summary" class="form-control" style="width:500px" name="summary" value="Enter Summary"></textarea></td></tr>
+    <tr>
+      <td></td><td> <input type="button" class="btn" onclick="predict()" value="Predict Closure code"> <input type="button" class="btn" onclick="clearPrediction()" value="Clear"></td>
+    </tr>
+    <tr>
+      <td>======================</td><td>====================================================================</td>
+    </tr>
+    <tr>
+      <td>======================</td><td>====================================================================</td>
+    </tr>
+  </table>
 
+  <table id="closureCode" class="table table-bordered" style="font-size:smaller;background-color: white;">
+      <tr><th>Code</th><th>Match Percentage</th></tr>
+      <tr><td>Code 6 </td><td>  80%  </td></tr>
+      <tr><td>Code 5 </td><td>  40%  </td></tr>
+  </table>
+</div>
 <!-- <div id="myBtnContainer">
   <button class="btn active" onclick="filterSelection('all')"> Show all</button>
   <button class="btn" onclick="filterSelection('cars')"> Cars</button>
@@ -67,5 +103,16 @@
   <div class="filterDiv animals">Cow</div>
 </div> -->
 <!-- <script src="Scripts/analytics.js"></script> -->
+<script>
+  $(document).ready(function(){
+    jQuery('#closureCode').css('display','none')  
+  })
+  function predict(){
+    jQuery('#closureCode').css('display','block')
+  }
+  function clearPrediction(){
+    jQuery('#closureCode').css('display','none')
+  }
+</script>
 </body>
 </html>
