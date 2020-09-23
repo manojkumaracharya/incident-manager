@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[140]:
-
+# In[140]:testdb
 
 # install package
 #pip install mysql-connector-python   
