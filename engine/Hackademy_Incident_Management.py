@@ -82,17 +82,16 @@ def create_table (table_name):
                "ASSIGNED_TO VARCHAR(255),"
                "LAST_UPDATED DATETIME,"
                "UPDATED_BY VARCHAR(255))")
-    else:
-        print("Query for the table does not exist.")
+    
         
     cursor.execute(query)
     conn.commit()
     
     
 def insert_table (table_name):
-    if table_name == "users":
-        query = ("INSERT INTO users (user_name, userid) "
-          "VALUES ('KUDE,VISHAKHA', '43678962'),('RANJAN,RAVI', '43678952'),('ACHARYA,MANOJ', '53678952'),('PATEL,MEENAKSHI', '54678952')")
+    if table_name == "user_details":
+        query = ("INSERT INTO user_details (username,password,userid) "
+          "VALUES ('KUDE,VISHAKHA','hsbc1234', '43678962'),('RANJAN,RAVI','hsbc1234','43678952'),('ACHARYA,MANOJ','hsbc1234','53678952'),('PATEL,MEENAKSHI','hsbc1234', '54678952')")
         cursor.execute(query)
     if table_name == "IN_SUMMARY":
         query = ("INSERT INTO IN_SUMMARY (IN_NO, SUMMARY,OPEN_DATE,PRIORITY,STATUS,LAST_UPDATED,UPDATED_BY) "
@@ -108,8 +107,7 @@ def insert_table (table_name):
         IN_DETAIL = pd.read_csv('IN_DETAIL.csv')
         # then we execute with every row in our dataframe
         cursor.executemany(query, list(IN_DETAIL.to_records(index=False)))
-    else:
-        print("Insert statement for the table does not exist.")
+    
         
     conn.commit()
     
