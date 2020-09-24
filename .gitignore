@@ -102,3 +102,20 @@ dist
 
 # TernJS port file
 .tern-port
+*.drawio
+gui/images/Architecture.png
+gui/images/Untitled Diagram.drawio
+design/Architecture.png
+design/BigQuery.jpg
+design/bootstrap.jpg
+design/CloudSQL.png
+design/datastudio.jpg
+design/electron.png
+design/GoogleAI.png
+design/GoogleML.png
+design/jquery.png
+design/nodejs.png
+design/pandas.png
+gui/images/Architecture.png
+gui/images/Untitled Diagram.drawio
+gui/images/Architecture.png
