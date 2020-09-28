@@ -58,9 +58,10 @@ conn.set_converter_class(NumpyMySQLConverter)
 # Create table
 
 def create_table (table_name):
-    if table_name == "users":
-        query = ("CREATE TABLE IF NOT EXISTS users ("
-               "user_name VARCHAR(255),"
+    if table_name == "user_details":
+        query = ("CREATE TABLE IF NOT EXISTS user_details ("
+               "username VARCHAR(255),"
+               "password VARCHAR(255),"
                "userid INT(8) )")
     if table_name == "IN_SUMMARY":
         query = ("CREATE TABLE IF NOT EXISTS IN_SUMMARY ("
@@ -82,8 +83,19 @@ def create_table (table_name):
                "ASSIGNED_TO VARCHAR(255),"
                "LAST_UPDATED DATETIME,"
                "UPDATED_BY VARCHAR(255))")
-    
-        
+    if table_name == "slack_ch_details":
+        query = ("CREATE TABLE IF NOT EXISTS slack_ch_details ("
+               "channel_id VARCHAR(255),"
+               "channel_name VARCHAR(255),"
+               "channel_create_dt DATETIME )")
+    if table_name == "rakshak_in_manager":
+        query = ("CREATE TABLE IF NOT EXISTS rakshak_in_manager ("
+               "members_id VARCHAR(255),"
+               "members_name VARCHAR(255),"
+               "members_real_name VARCHAR(255),"
+               "members_uname VARCHAR(255),"
+               "member_password VARCHAR(255) )")
+   
     cursor.execute(query)
     conn.commit()
     
@@ -107,6 +119,13 @@ def insert_table (table_name):
         IN_DETAIL = pd.read_csv('IN_DETAIL.csv')
         # then we execute with every row in our dataframe
         cursor.executemany(query, list(IN_DETAIL.to_records(index=False)))
+    if table_name == "rakshak_in_manager":
+        query = ("INSERT INTO rakshak_in_manager (members_id,members_name, members_real_name,members_uname,member_password) "
+         "VALUES (%s,%s,%s,%s,%s)")
+        import pandas as pd
+        rakshak_in_manager = pd.read_csv('rakshak_in_manager.csv')
+        # then we execute with every row in our dataframe
+        cursor.executemany(query, list(rakshak_in_manager.to_records(index=False)))
     
         
     conn.commit()
@@ -137,7 +156,11 @@ def update_INstatus(tablename,newstatus,IN_NO ):
 if inputAction == "getData" :
     print (json.dumps(json_output("IN_SUMMARY"),indent=4,sort_keys=True, default=str)) 
     sys.stdout.flush()
-    
+
+if inputAction == "getUserData" :
+    print (json.dumps(json_output("rakshak_in_manager"))) 
+    sys.stdout.flush()    
+ 
 if inputAction == "updateStatus" :
     status = sys.argv[2]
     incident = sys.argv[3]
