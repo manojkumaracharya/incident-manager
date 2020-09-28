@@ -140,8 +140,7 @@ def json_output(table_name):
     cursor = conn.cursor(dictionary=True) 
     cursor.execute("select * from " + table_name)
     out = cursor.fetchall()
-    return out
-    
+    return out    
     
 def update_INstatus(tablename,newstatus,IN_NO ):
     
@@ -158,15 +157,9 @@ if inputAction == "getData" :
     sys.stdout.flush()
 
 if inputAction == "getUserData" :
-<<<<<<< Updated upstream
     print (json.dumps(json_output("rakshak_in_manager"))) 
     sys.stdout.flush()    
  
-=======
-    print (json.dumps(json_output("user_details"))) 
-    sys.stdout.flush()
-    
->>>>>>> Stashed changes
 if inputAction == "updateStatus" :
     status = sys.argv[2]
     incident = sys.argv[3]
