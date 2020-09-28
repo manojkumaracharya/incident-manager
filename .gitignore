@@ -125,3 +125,4 @@ engine/slackapp_env.py
 .idea/modules.xml
 .idea/incident-manager.iml
 .idea/vcs.xml
+*.pyc

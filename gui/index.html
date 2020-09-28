@@ -24,12 +24,15 @@
 
   <div class="row">
     
-    <div class="col-md-2 login">    
+    <div class="col-md-2 login">
+      <div>
+        <span id="message" style="color:orangered;font-weight: bold;"></span>
+      </div> 
       <div class="form-group">
         <input type="text" id="username" class="form-control" placeholder="username" name="">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="password" name="password">
+        <input type="password" id="password" class="form-control" placeholder="password" name="password">
       </div>
       <!-- <div class="form-group">
         <textarea class="form-control" rows="4"></textarea>
@@ -42,7 +45,7 @@
       <p>OR</p>>    
     </div>
     <div class="col-md-2 bioLogin">    
-      <input type="submit" class="btn btn-info btn-lg" value="Bio Login" name="">
+      <input type="submit" class="btn btn-info btn-lg" onclick="faceDetection()" value="Bio Login" name="">
     </div>
   </div>
 	
