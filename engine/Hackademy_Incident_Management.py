@@ -156,7 +156,11 @@ def update_INstatus(tablename,newstatus,IN_NO ):
 if inputAction == "getData" :
     print (json.dumps(json_output("IN_SUMMARY"),indent=4,sort_keys=True, default=str)) 
     sys.stdout.flush()
-    
+
+if inputAction == "getUserData" :
+    print (json.dumps(json_output("rakshak_in_manager"))) 
+    sys.stdout.flush()    
+ 
 if inputAction == "updateStatus" :
     status = sys.argv[2]
     incident = sys.argv[3]
