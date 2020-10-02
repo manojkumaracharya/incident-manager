@@ -4,22 +4,28 @@ var path = require("path");
 var jsonOutput = '';
 
 function faceDetection(){
-  // var options = {
-  //   scriptPath : path.join(__dirname, '/../engine/'),
-  //   args : ['getData']
-  // }
-  // //alert(options)
-  // var pyshell = new PythonShell('videoTester.py', options);
-  // //alert(pyshell)
-  // var jsonOutput = ''
-  // pyshell.on('message', function(message) {
-  //   jsonOutput += message;
-  // })
+  var options = {
+    scriptPath : path.join(__dirname, '/../engine/'),
+    args : ['getData']
+  }
+  //alert(options)
+  var pyshell = new PythonShell('videoTester.py', options);
+  //alert(pyshell)
+  var jsonOutput = ''
+  pyshell.on('message', function(message) {
+    jsonOutput += message;
+  })
 
-  // pyshell.end(function (err) {
-  //   if (err) throw err;
-  //   console.log(jsonOutput)
-  // });
+  pyshell.end(function (err) {
+    if (err) throw err;
+    console.log(jsonOutput)
+    var output = JSON.parse(jsonOutput);
+    console.log(output)
+    if(output == "Face Recognized"){
+      window.location="tabs.html";
+      return
+    }
+  });
 }
 
 function login() {

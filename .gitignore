@@ -126,3 +126,12 @@ engine/slackapp_env.py
 .idea/incident-manager.iml
 .idea/vcs.xml
 *.pyc
+*.jpg
+engine/trainingImages/.DS_Store
+engine/trainingImages/0/.DS_Store
+engine/HaarCascade/.DS_Store
+engine/resizedTrainingImages/.DS_Store
+engine/resizedTrainingImages/0/.DS_Store
+engine/resizedTrainingImages/1/.DS_Store
+engine/TestImages/.DS_Store
+engine/trainingImages/1/.DS_Store
