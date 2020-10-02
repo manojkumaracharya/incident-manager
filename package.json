@@ -20,6 +20,8 @@
     "popper.js": "^1.16.1",
     "python-shell": "^1.0.7",
     "requests": "^0.3.0",
-    "slackclient": "2.9.1"
+    "slackclient": "2.9.1",
+    "opencv-python":"1.19.1",
+    "numpy":"1.17.3"
   }
 }

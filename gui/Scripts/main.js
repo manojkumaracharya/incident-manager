@@ -9,6 +9,8 @@ function faceDetection(){
     args : ['getData']
   }
   //alert(options)
+  //https://github.com/neha01/FaceRecognition
+  //https://www.youtube.com/watch?v=h21wMKGs0qs&feature=youtu.be
   var pyshell = new PythonShell('videoTester.py', options);
   //alert(pyshell)
   var jsonOutput = ''
