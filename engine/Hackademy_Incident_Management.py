@@ -153,7 +153,7 @@ def update_INstatus(tablename,newstatus,IN_NO ):
     return "Status Updated"  
 
 if inputAction == "getData" :
-    print (json.dumps(json_output("IN_SUMMARY"),indent=4,sort_keys=True, default=str)) 
+    print (json.dumps(json_output("IN_DETAIL"),indent=4,sort_keys=True, default=str)) 
     sys.stdout.flush()
 
 if inputAction == "getUserData" :
@@ -163,7 +163,7 @@ if inputAction == "getUserData" :
 if inputAction == "updateStatus" :
     status = sys.argv[2]
     incident = sys.argv[3]
-    print (update_INstatus("IN_SUMMARY",status,incident)) 
+    print (update_INstatus("IN_DETAIL",status,incident)) 
     sys.stdout.flush()
 
 # In[147]:

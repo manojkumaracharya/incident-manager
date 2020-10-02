@@ -15,10 +15,11 @@
   "dependencies": {
     "mysql-connector-python": "8.0.21",
     "pandas": "1.1.1",
+    "path": "^0.12.7",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "python-shell": "^1.0.7",
-    "slackclient":"2.9.1",
-    "requests":"2.24.0"
+    "requests": "^0.3.0",
+    "slackclient": "2.9.1"
   }
 }

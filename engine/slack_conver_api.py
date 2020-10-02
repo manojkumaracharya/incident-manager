@@ -82,7 +82,7 @@ def add_user_to_ch(channel_id, user_id):
     else:
         print('Error in Adding User')
 
-# create_ch = slackconvapi('IN12343')
+# create_ch = slackconvapi('IN000012343')
 # create_ch.sl_create_ch()
 
 inputAction = sys.argv[1]

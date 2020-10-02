@@ -18,5 +18,10 @@ JS and Python can be used to interact together
 	* npm install electron
 	* npm install bootstrap
 	* npm install jquery
+  * npm install python-shell
+  * npm install path
+  * pip install slackclient
+  * pip install pandas
+  * npm install popper
 	
 	* For running the application, 	'npm start'
