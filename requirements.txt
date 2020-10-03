@@ -2,3 +2,5 @@ requests
 wheel
 mysql.connector
 pandas
+opencv-python
+numpy

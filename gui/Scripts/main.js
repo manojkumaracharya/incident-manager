@@ -34,17 +34,18 @@ function login() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
   var message = '';
-  window.location="tabs.html";
-  return;
+  // window.location="tabs.html";
+  // return;
 
   if(username && password){
     console.log(username);
     var userDetails = JSON.parse(jsonOutput);
     for(var i =0;i<userDetails.length;i++){
-      if(userDetails[i].members_uname == username ){
-        if(userDetails[i].member_password == password){
+      if(userDetails[i].userid == username ){
+        if(userDetails[i].passwd == password){
           message = "login successful"
-          localStorage.setItem("username",userDetails[i].members_real_name);
+          localStorage.setItem("username",userDetails[i].username);
+          localStorage.setItem("slack_id",userDetails[i].slack_id);
           //https://stackoverflow.com/questions/48493102/javascript-load-an-html-page-with-button-click
           window.location="tabs.html";
         }
@@ -78,7 +79,7 @@ $(document).ready(function(){
 function getUserData() {
   var options = {
     scriptPath : path.join(__dirname, '/../engine/'),
-    args : ['getUserData']
+    args : ['getData','user_details']
   }
   //alert(options)
   var pyshell = new PythonShell('Hackademy_Incident_Management.py', options);

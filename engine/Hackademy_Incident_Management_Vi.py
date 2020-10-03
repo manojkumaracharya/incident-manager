@@ -9,24 +9,11 @@
 import mysql.connector
 import json
 import sys
-import os
 from mysql.connector.constants import ClientFlag
 from configparser import ConfigParser
 
 configParser = ConfigParser()    
-# filePath = os.path.normpath(os.getcwd() + os.sep + os.pardir)
-filepath = os.path.dirname(__file__).split('/')
-configFilePath = ''
-for i in range(len(filepath)-1):
-    if(i==0):
-        configFilePath = filepath[i]
-    else:
-        configFilePath = configFilePath + '/' + filepath[i]
-
-configFilePath = configFilePath + "/config/RDS_Config.txt"
-# print(configFilePath)
-# configFilePath = "/home/ravi/Documents/projects/rkdc/incident-manager/config/RDS_Config.txt"  # change this path where Config.txt is saved also check path for ssl files
-configFilePath = r'C:\workspace\incident-manager\config\RDS_Config.txt'
+configFilePath = r'C:\workspace\ssl\Config.txt'  # change this path where Config.txt is saved also check path for ssl files
 configParser.read(configFilePath)
 
 # set the GCP DB details in config var
@@ -36,6 +23,10 @@ Config = {
     'password': configParser.get('config', 'password'),
     'host': configParser.get('config', 'host'),
     'port' : configParser.get('config', 'port'),
+    'client_flags': [ClientFlag.SSL],
+    'ssl_ca': configParser.get('config', 'ssl_ca'),
+    'ssl_cert': configParser.get('config', 'ssl_cert'),
+    'ssl_key': configParser.get('config', 'ssl_key'),
     'database':configParser.get('config', 'database')
 }
 
@@ -44,6 +35,7 @@ cursor = conn.cursor() # initialize connection cursor
 
 
 # In[146]:
+inputAction = sys.argv[1]
 
 # additional functions to support insert statements
 
@@ -149,12 +141,6 @@ def json_output(table_name):
     cursor.execute("select * from " + table_name)
     out = cursor.fetchall()
     return out    
-
-def json_incident_detail(incident):
-    cursor = conn.cursor(dictionary=True) 
-    cursor.execute("select * from IN_DETAIL where IN_NO = '" + incident + "'")
-    out = cursor.fetchall()
-    return out
     
 def update_INstatus(tablename,newstatus,IN_NO ):
     
@@ -166,25 +152,34 @@ def update_INstatus(tablename,newstatus,IN_NO ):
     conn.commit() 
     return "Status Updated"  
 
-inputAction = sys.argv[1]
-
-
 if inputAction == "getData" :
-    tableName = sys.argv[2]
-    print (json.dumps(json_output(tableName),indent=4,sort_keys=True, default=str)) 
+    print (json.dumps(json_output("IN_DETAIL"),indent=4,sort_keys=True, default=str)) 
     sys.stdout.flush()
 
-if inputAction == "getIncidentDetail" :    
-    incidentNumber = sys.argv[2]
-    # print(incidentNumber)
-    print (json.dumps(json_incident_detail(incidentNumber),indent=4,sort_keys=True, default=str)) 
-    sys.stdout.flush()
+if inputAction == "getUserData" :
+    print (json.dumps(json_output("rakshak_in_manager"))) 
+    sys.stdout.flush()    
  
 if inputAction == "updateStatus" :
     status = sys.argv[2]
     incident = sys.argv[3]
-    print (update_INstatus("IN_SUMMARY",status,incident)) 
+    print (update_INstatus("IN_DETAIL",status,incident)) 
     sys.stdout.flush()
 
-# read_data('IN_SUMMARY')
-# read_data('IN_DETAIL')
+# In[147]:
+
+
+json_output('IN_SUMMARY')
+
+
+# In[148]:
+
+
+json_output('IN_DETAIL')
+
+
+# In[ ]:
+
+
+
+

@@ -1,5 +1,5 @@
 {
-  "name": "python-app-with-electron",
+  "name": "incident-manager",
   "version": "1.0.0",
   "description": "Incident Manager Electron application",
   "main": "app.js",
