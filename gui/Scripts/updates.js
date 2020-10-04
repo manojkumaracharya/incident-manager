@@ -20,7 +20,7 @@ function startSlackChannel(incidentNumber){
     console.log(message);
     if(message.indexOf('/rakshakhq.slack.com/archives')>-1){
       alert('slack channel created')
-      document.getElementById(incidentNumber).innerHTML='<a href=' + message + ' target="_blank">Channel Link</a>';
+      document.getElementById(incidentNumber).innerHTML='<a href=' + message + ' title=' + message + ' target="_blank">Channel Link</a>';
     }
     jsonOutput += message;
   })
@@ -48,7 +48,7 @@ function getSlackChannel(incidentNumber){
   pyshell.on('message', function(message) {
     console.log(message);
     if(message.indexOf('/rakshakhq.slack.com/archives')>-1){
-      document.getElementById(incidentNumber).innerHTML='<a href=' + message + ' target="_blank">Channel Link</a>';
+      document.getElementById(incidentNumber).innerHTML='<a href=' + message + ' title=' + message + ' target="_blank">Channel Link</a>';
     }
   })
 
