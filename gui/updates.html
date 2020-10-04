@@ -17,10 +17,14 @@
     <div class="text-center buttonAddWrapper">
       <table>
         <tr><td>
-          <button class="btn btn-info btn-rounded btn-sm buttonEdit" onclick="getData()" >Reload</a>
+          <button class="btn btn-info btn-rounded btn-sm buttonEdit" onclick="getData()" >Reload</button>
         </td><td>
-          <button class="btn btn-info btn-rounded btn-sm buttonEdit" id="editData" onclick="openModal()" >Edit Status<i class="fa fa-pencil-square-o ml-1"></i></a>
-        </td></tr>
+          <button class="btn btn-info btn-rounded btn-sm buttonEdit" id="editData" onclick="openModal('modal.html')" >Edit Status<i class="fa fa-pencil-square-o ml-1"></i></button>
+        </td>
+      </td><td>
+        <button class="btn btn-info btn-rounded btn-sm buttonEdit" id="predict" onclick="openModal('predictionModal.html')" >Show Similar Incidents</button>
+      </td>      
+      </tr>
       </table>      
     </div>
     <br/>

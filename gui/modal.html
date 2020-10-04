@@ -27,7 +27,7 @@
       </select>
     </td></tr>
     <tr><td><label for="lastUpdated">Last Updated:   </label><br></td><td><input type="text" id="lastUpdated" class="form-control" name="lastUpdated" readonly value=""></td></tr>
-    <tr><td><label for="updatedBy">Updated By:   </label><br></td><td><input type="text" id="updatedBy" class="form-control" name="updatedBy" readonly value=""></td></tr>
+    <!-- <tr><td><label for="updatedBy">Updated By:   </label><br></td><td><input type="text" id="updatedBy" class="form-control" name="updatedBy" readonly value=""></td></tr> -->
     <tr>
       <td> <input type="button" class="btn btn-info" onclick="closeWindow()" value="Cancel" name=""> </td>
       <td><input type="button" class="btn btn-info" onclick="submitChanges()" value="Submit" name=""></td>      
@@ -41,7 +41,7 @@
   document.getElementById("priority").value = localStorage.getItem("priority");
   document.getElementById("status").value = localStorage.getItem("status");
   document.getElementById("lastUpdated").value = localStorage.getItem("lastUpdated");
-  document.getElementById("updatedBy").value = localStorage.getItem("updatedBy");
+  // document.getElementById("updatedBy").value = localStorage.getItem("updatedBy");
 
   var {PythonShell} = require('python-shell')
   var path = require("path")

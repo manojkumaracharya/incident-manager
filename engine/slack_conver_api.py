@@ -49,13 +49,13 @@ class slackconvapi:
         payload_json_data = {}
         create_ch_data = json.loads(response.text.encode('utf8'))
         # print(create_ch_data['ok'])
-        if("error" in create_ch_data):            
-            if(create_ch_data['error'] == "name_taken"):
-                slackconvapi.sl_get_ch_link(self)
-                return
-            else:
-                print(create_ch_data['error'])
-                return
+        # if("error" in create_ch_data):            
+        #     if(create_ch_data['error'] == "name_taken"):
+        #         slackconvapi.sl_get_ch_link(self)
+        #         return
+        #     else:
+        #         print(create_ch_data['error'])
+        #         return
 
         if create_ch_data['ok']:
             # print(create_ch_data['channel']['id'], create_ch_data['channel']['name'], create_ch_data['channel']['created'])
@@ -70,8 +70,13 @@ class slackconvapi:
             slackconvapi.post_ini_msg(create_ch_data['channel']['id'])
             ##Bot User D01BDBMBU93
             slackconvapi.add_user_to_ch(create_ch_data['channel']['id'],'U01BV3BMQ81')
+        elif("error" in create_ch_data):
+             if(create_ch_data['error'] == "name_taken"):
+                 slackconvapi.sl_get_ch_link(self)
+                 return
         else:
-            print('Error in channel creation')
+            print(create_ch_data['error'])
+            return
 
 
     def get_user_list(self):

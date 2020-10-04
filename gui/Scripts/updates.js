@@ -20,7 +20,7 @@ function startSlackChannel(incidentNumber){
     console.log(message);
     if(message.indexOf('/rakshakhq.slack.com/archives')>-1){
       alert('slack channel created')
-      document.getElementById(incidentNumber).innerHTML=message;
+      document.getElementById(incidentNumber).innerHTML='<a href=' + message + ' target="_blank">Channel Link</a>';
     }
     jsonOutput += message;
   })
@@ -48,7 +48,7 @@ function getSlackChannel(incidentNumber){
   pyshell.on('message', function(message) {
     console.log(message);
     if(message.indexOf('/rakshakhq.slack.com/archives')>-1){
-      document.getElementById(incidentNumber).innerHTML=message;
+      document.getElementById(incidentNumber).innerHTML='<a href=' + message + ' target="_blank">Channel Link</a>';
     }
   })
 
@@ -75,6 +75,7 @@ function getData() {
     //console.log('finished');
     processOutput(jsonOutput);
     document.getElementById("editData").disabled = true;
+    document.getElementById("predict").disabled = true;
     highlight_row();
   });
 }
@@ -106,8 +107,8 @@ function processOutput(jsonString){
     var rows = JSON.parse(jsonString);  
     var html='<table class="table table-striped table-bordered" style="font-size:smaller" id="display-table"> '
     html += '<thead> <tr> <th class="th-sm">Incident</th> <th class="th-sm">Summary</th> '
-    html += '<th class="th-sm">Open Date</th> <th class="th-sm">Priority</th> <th class="th-sm">Assigned To</th><th class="th-sm">Status</th> <th class="th-sm">Last Updated</th> '
-    html += '<th class="th-sm">Updated By</th><th class="th-sm">Slack</th></tr> </thead> <tbody>'
+    html += '<th class="th-sm">Open Date</th> <th class="th-sm">Priority</th> <th class="th-sm">Assigned To</th><th class="th-sm">Status</th> '
+    html += '<th class="th-sm">Last Updated</th> <th class="th-sm">Slack</th></tr> </thead> <tbody>'
 
     for (var i=0;i<rows.length;i++){
       html+= '<tr> <td class="pt-3-half" ><button class="btn incidentNumber" title="Click to view update log">' + rows[i].IN_NO + '</button></td> '
@@ -117,7 +118,7 @@ function processOutput(jsonString){
       html+= '<td class="pt-3-half" >' + rows[i].ASSIGNED_TO + '</td> '
       html+= '<td class="pt-3-half" >' + rows[i].STATUS + '</td> '
       html+= '<td class="pt-3-half" >' + rows[i].LAST_UPDATED + '</td> '
-      html+= '<td class="pt-3-half" >' + rows[i].UPDATED_BY + '</td> '
+      //html+= '<td class="pt-3-half" >' + rows[i].UPDATED_BY + '</td> '
       // html+= '<td><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Create Slack Channel</button></td> </tr>'
       //html+= '<td><span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></span></td> </tr>'    
       //https://stackoverflow.com/questions/8449358/creating-a-custom-html-button-with-background-image-and-text
@@ -160,12 +161,12 @@ function processOutput(jsonString){
 }
 
 //https://stackoverflow.com/questions/42900871/how-to-create-a-modal-window-and-load-html-from-render-process
-function openModal() {
+function openModal(windowName) {
   let win = new remote.BrowserWindow({
     parent: remote.getCurrentWindow(),
     modal: true
   })
-  var theUrl = 'file://' + __dirname + '/modal.html'
+  var theUrl = 'file://' + __dirname + '/' + windowName
   console.log('url', theUrl);
   win.loadURL(theUrl);
 }
@@ -195,7 +196,7 @@ function highlight_row() {
             //msg = 'The ID of the company is: ' + rowSelected.cells[0].innerHTML;
             //msg += '\nThe cell value is: ' + this.innerHTML;
 
-            localStorage.setItem("incident",rowSelected.cells[0].innerHTML);
+            localStorage.setItem("incident",rowSelected.cells[0].innerText);
             localStorage.setItem("summary",rowSelected.cells[1].innerHTML);
             localStorage.setItem("openDate",rowSelected.cells[2].innerHTML);
             localStorage.setItem("priority",rowSelected.cells[3].innerHTML);
@@ -205,6 +206,7 @@ function highlight_row() {
             localStorage.setItem("updatedBy",rowSelected.cells[7].innerHTML);
             //alert(msg);
             document.getElementById("editData").disabled = false;
+            document.getElementById("predict").disabled = false;
         }
     }
 }

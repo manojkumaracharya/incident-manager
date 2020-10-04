@@ -135,4 +135,9 @@ engine/resizedTrainingImages/0/.DS_Store
 engine/resizedTrainingImages/1/.DS_Store
 engine/TestImages/.DS_Store
 engine/trainingImages/1/.DS_Store
+engine/slackapp_env_old.py
+*.pyc
+config/RDS_Config.txt
+engine/__pycache__/slackapp_env.cpython-38.pyc
+*.pyc
 *.pyc
