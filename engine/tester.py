@@ -13,12 +13,10 @@ test_img=cv2.imread(filePath +'/TestImages/435069_kangana.jpg')#test_img path
 faces_detected,gray_img=fr.faceDetection(test_img)
 print("faces_detected:",faces_detected)
 
-
 #Comment belows lines when running this program second time.Since it saves training.yml file in directory
 faces,faceID=fr.labels_for_training_data(filePath +'/trainingImages')
 face_recognizer=fr.train_classifier(faces,faceID)
 face_recognizer.write(filePath +'/trainingData.yml')
-
 
 #Uncomment below line for subsequent runs
 # face_recognizer=cv2.face.LBPHFaceRecognizer_create()
@@ -42,8 +40,3 @@ resized_img=cv2.resize(test_img,(1000,1000))
 cv2.imshow("face dtecetion tutorial",resized_img)
 cv2.waitKey(0)#Waits indefinitely until a key is pressed
 cv2.destroyAllWindows
-
-
-
-
-
