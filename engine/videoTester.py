@@ -11,7 +11,7 @@ filePath = os.path.dirname(__file__)
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 face_recognizer.read(filePath +'/trainingData.yml')#Load saved training data
 
-name = {0 : "Priyanka",1 : "Kangana",2:"Manoj"}
+name = {1:"Manoj"}
 
 detectedFace = 0;
 cap=cv2.VideoCapture(0)
@@ -36,10 +36,10 @@ while True:
         # print("label:",label)
         fr.draw_rect(test_img,face)
         predicted_name=name[label]
-        if confidence < 39:#If confidence less than 37 then don't print predicted face text on screen
+        if confidence > 39:#If confidence less than 37 then don't print predicted face text on screen
            fr.put_text(test_img,predicted_name,x,y)
 
-        if confidence > 40:#If confidence less than 37 then don't print predicted face text on screen
+        if confidence < 39:#If confidence less than 37 then don't print predicted face text on screen
           #  print("label:",label)
            detectedFace = label
            break

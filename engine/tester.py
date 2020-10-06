@@ -9,7 +9,7 @@ from os import path
 filePath = os.path.dirname(__file__)
 # print(filePath)
 
-test_img=cv2.imread(filePath +'/TestImages/435069_kangana.jpg')#test_img path
+test_img=cv2.imread(filePath +'/TestImages/WIN_20201002_17_13_01_Pro.jpg')#test_img path
 faces_detected,gray_img=fr.faceDetection(test_img)
 print("faces_detected:",faces_detected)
 
@@ -22,7 +22,7 @@ face_recognizer.write(filePath +'/trainingData.yml')
 # face_recognizer=cv2.face.LBPHFaceRecognizer_create()
 # face_recognizer.read('trainingData.yml')#use this to load training data for subsequent runs
 
-name={0:"Priyanka",1:"Kangana",2:"Manoj"}#creating dictionary containing names for each label
+name={1:"Manoj"}#creating dictionary containing names for each label
 
 for face in faces_detected:
     (x,y,w,h)=face
