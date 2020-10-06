@@ -39,7 +39,7 @@ while True:
         if confidence > 39:#If confidence less than 37 then don't print predicted face text on screen
            fr.put_text(test_img,predicted_name,x,y)
 
-        if confidence < 39:#If confidence less than 37 then don't print predicted face text on screen
+        if confidence < 50:#If confidence less than 37 then don't print predicted face text on screen
           #  print("label:",label)
            detectedFace = label
            break
